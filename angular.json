@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "CashFlowCaculator"
+    }
+  },
+  "defaultProject": "CashFlowCaculator",
+  "cli": {
+    "analytics": "126d08b5-eecc-4ba0-b1e5-d2a2449e92b4"
+  }
 }

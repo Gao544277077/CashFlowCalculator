@@ -1,0 +1,14 @@
+<table style="width:100%" *ngIf="pool"> 
+    <tr>
+      <th>month</th>
+      <th>interest</th>
+      <th>principal</th>
+      <th>rem balance</th>
+    </tr>
+    <tr *ngFor='let interest of this.pool.interests;let i = index'>
+      <td>{{i+1}}</td>
+      <td>{{interest|currency}}</td>
+      <td>{{pool.principalPaymentList[i]|currency}}</td>
+      <td>{{pool.remBalanceList[i]|currency}}</td>
+    </tr>
+  </table>
