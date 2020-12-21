@@ -14,9 +14,9 @@ export class AppComponent {
   pool:Loan;
   activeForm:boolean=false;
   loanForm = new FormGroup({
-    balance: new FormControl("", [Validators.required, Validators.min(1)]),
-    rate:new FormControl("", [Validators.required,Validators.min(1),Validators.max(30)],),
-    term:new FormControl("", [Validators.required,Validators.min(1),Validators.max(200)]),
+    balance: new FormControl("", [Validators.required, Validators.min(1),Validators.pattern("^\\$?(([1-9](\\d*|\\d{0,2}(,\\d{3})*))|0)(\\.\\d{1,2})?$")]),
+    rate:new FormControl("", [Validators.required,Validators.min(1),Validators.max(30)]),
+    term:new FormControl("", [Validators.required,Validators.min(1),Validators.max(200),Validators.pattern("[0-9]+")]),
   });
   constructor(private calculation:CalculationService){
     this.loanList=this.calculation.loanList;

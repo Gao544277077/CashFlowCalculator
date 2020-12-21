@@ -10,17 +10,18 @@
     balance is required.
   </div>
   <div *ngIf="loanForm.controls.balance.errors.min">
-    balance must be great 1;
+    balance must be great 1.
   </div>
-  <div *ngIf="loanForm.controls.balance.errors.max">
-    balance cannot be Bob.
+  <div *ngIf="loanForm.controls.balance.errors.pattern">
+    balance should be currency.
   </div>
 
 </div>
 </div>
 <div>
   <label>term(1-200)
-    <input type="number" formControlName="term" placeholder="term">
+    
+    <input type="number" formControlName="term" placeholder="term" >
   </label>
   <div *ngIf="loanForm.controls.term.invalid && (loanForm.controls.term.dirty || loanForm.controls.term.touched)"
   class="alert alert-danger">
@@ -29,10 +30,13 @@
   term is required.
 </div>
 <div *ngIf="loanForm.controls.term.errors.min">
-  term must be great 1;
+  term must be great 1.
 </div>
 <div *ngIf="loanForm.controls.term.errors.max">
   term cannot be great 200.
+</div>
+<div *ngIf="loanForm.controls.term.errors.pattern">
+  term cannot be decimal value.
 </div>
 
 </div>
@@ -81,7 +85,3 @@ rate cannot be great 30.
     </tr>
   </table>
 </li>
-
-
-
-<!-- <router-outlet></router-outlet> -->
