@@ -21,33 +21,28 @@ export class CalculationService {
       loan.principalPaymentList.push(principal_payment);
       loan.interests.push(interest);
       loan.months.push(i+1);
-    }
-    this.loanList.push(loan);
-
-    for (let i = 0; i < this.loanList.length; i++) {
-      if(i===0){
+      if(!this.pool.remBalanceList||!this.pool.interests||!this.pool.principalPaymentList){
         this.pool.remBalanceList=[];
         this.pool.interests=[];
         this.pool.principalPaymentList=[];
       }
-      if (this.loanList[i].term > this.pool.term) {
-        this.pool.term = this.loanList[i].term;
+      if (loan.term > this.pool.term) {
+        this.pool.term = loan.term;
       }
-      this.pool.balance += this.loanList[i].balance;
-      for (let j = 0; j < this.loanList[i].term; j++) {
-        if(!this.pool.remBalanceList[j]){
-          this.pool.remBalanceList.push(this.loanList[i].remBalanceList[j]);
-          this.pool.interests.push(this.loanList[i].interests[j]);
-          this.pool.principalPaymentList.push(this.loanList[i].principalPaymentList[j]);
+      this.pool.balance += loan.balance;
+      if(!this.pool.remBalanceList[i]){
+        this.pool.remBalanceList.push(loan.remBalanceList[i]);
+        this.pool.interests.push(loan.interests[i]);
+        this.pool.principalPaymentList.push(loan.principalPaymentList[i]);
 
-        }else{
-        this.pool.remBalanceList[j] += this.loanList[i].remBalanceList[j];
-        this.pool.principalPaymentList[j] += this.loanList[i].principalPaymentList[j];
-        this.pool.interests[j] += this.loanList[i].interests[j];
-        }
-        }
+      }else{
+      this.pool.remBalanceList[i] += loan.remBalanceList[i];
+      this.pool.principalPaymentList[i] += loan.principalPaymentList[i];
+      this.pool.interests[i] += loan.interests[i];
       }
-      this.poolSubject.next(this.pool);
+    }
+    this.loanList.push(loan);
+    this.poolSubject.next(this.pool);
 
   }
 }
