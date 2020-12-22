@@ -1,0 +1,17 @@
+<li *ngFor='let loan of loanList; let index=index'>
+    <h1> {{loan.id}}:</h1>
+     <table style="width:100%">
+       <tr>
+         <th>month</th>
+         <th>interest</th>
+         <th>principal</th>
+         <th>rem balance</th>
+       </tr>
+       <tr *ngFor='let month of loan.months;let i = index'>
+         <td>{{month}}</td>
+         <td>{{loan.interests[i]|currency}}</td>
+         <td>{{loan.principalPaymentList[i]|currency}}</td>
+         <td>{{loan.remBalanceList[i]|currency}}</td>
+       </tr>
+     </table>
+   </li>

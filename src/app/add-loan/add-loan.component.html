@@ -1,0 +1,68 @@
+<form *ngIf='activeForm===true' [formGroup]="loanForm" (ngSubmit)="updateLoan()">
+    <div>
+    <label>balance
+      <input type="number" formControlName="balance"  placeholder="balance">
+    </label>
+    <div *ngIf="loanForm.controls.balance.invalid && (loanForm.controls.balance.dirty || loanForm.controls.balance.touched)"
+      class="alert alert-danger" >
+  
+    <div *ngIf="loanForm.controls.balance.errors.required">
+      balance is required.
+    </div>
+    <div *ngIf="loanForm.controls.balance.errors.min">
+      balance must be great 1.
+    </div>
+    <div *ngIf="loanForm.controls.balance.errors.pattern">
+      balance should be currency.
+    </div>
+  
+  </div>
+  </div>
+  <div>
+    <label>term(1-200)
+      
+      <input type="number" formControlName="term" placeholder="term" >
+    </label>
+    <div *ngIf="loanForm.controls.term.invalid && (loanForm.controls.term.dirty || loanForm.controls.term.touched)"
+    class="alert alert-danger">
+  
+  <div *ngIf="loanForm.controls.term.errors.required">
+    term is required.
+  </div>
+  <div *ngIf="loanForm.controls.term.errors.min">
+    term must be great 1.
+  </div>
+  <div *ngIf="loanForm.controls.term.errors.max">
+    term cannot be great 200.
+  </div>
+  <div *ngIf="loanForm.controls.term.errors.pattern">
+    term cannot be decimal value.
+  </div>
+  
+  </div>
+    </div>
+    <div>
+    <label>rate(0-30)
+      <input type="number" formControlName="rate" placeholder="rate">
+    </label>
+  </div>
+  <div *ngIf="loanForm.controls.rate.invalid && (loanForm.controls.balance.dirty || loanForm.controls.balance.touched)"
+  class="alert alert-danger">
+  
+  <div *ngIf="loanForm.controls.rate.errors.required">
+  rate is required.
+  </div>
+  <div *ngIf="loanForm.controls.rate.errors.min">
+  rate must be great 1;
+  </div>
+  <div *ngIf="loanForm.controls.rate.errors.max">
+  rate cannot be great 30.
+  </div>
+  
+  </div>
+    <button type="submit" [disabled]="!loanForm.valid">Submit</button>
+  </form>
+  
+  
+  
+  <button *ngIf='activeForm===false' (click)=addNewLoan()>add new loan</button>

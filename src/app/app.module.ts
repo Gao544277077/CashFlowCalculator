@@ -6,11 +6,15 @@ import { AppComponent } from './app.component';
 import { CalculationService } from './calculation.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PoolComponent } from './pool/pool.component';
+import { LoanComponent } from './loan/loan.component';
+import { AddLoanComponent } from './add-loan/add-loan.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PoolComponent
+    PoolComponent,
+    LoanComponent,
+    AddLoanComponent
   ],
   imports: [
     BrowserModule,
